@@ -27,9 +27,13 @@ You're reading it! Below I describe how I addressed each rubric point and where 
 ### Explain the Starter Code
 
 #### 1. Explain the functionality of what's provided in `motion_planning.py` and `planning_utils.py`
-These scripts contain a basic planning implementation that includes...
+These scripts contain a basic planning implementation that includes A* algorithm.
+In plan_path function, obstacle map data is loaded and grid+offsets are created inside create_grid function by providing map, target altitude and safety margin.
+Start and goal positions are planned as arbitrary positions on grid. Further, A* algorithm is called to plan the path from start to goal position.
+A* works with heuristic (eucledean distance) for path planning. A* takes start position, checks for every possible valid action and required cost.
+It creates every action as a node and associated cost to reach, chooses the actions which is taking towards goal while avoiding obstacle.  
+Once it reached to goal as current node, it traces back the exact path from start position and gives back that path, later these nodes in path converted to waypoints.
 
-And here's a lovely image of my results (ok this image has nothing to do with it, but it's a nice example of how to include images in your writeup!)
 ![Top Down View](./misc/high_up.png)
 
 Here's | A | Snappy | Table
@@ -42,18 +46,11 @@ Here's | A | Snappy | Table
 ### Implementing Your Path Planning Algorithm
 
 #### 1. Set your global home position
-Here students should read the first line of the csv file, extract lat0 and lon0 as floating point values and use the self.set_home_position() method to set global home. Explain briefly how you accomplished this in your code.
-
-
-And here is a lovely picture of our downtown San Francisco environment from above!
-![Map of SF](./misc/map.png)
+I have used np.loadtxt with datatype as S15 (considers it as string), skiprow as 0 and maxrow as 1. So that it reads only 1 row from that file.
+Further, to extract longitude and latitude , I have broke the string array using split function and converted the string to float.
 
 #### 2. Set your current local position
-Here as long as you successfully determine your local position relative to global home you'll be all set. Explain briefly how you accomplished this in your code.
-
-
-Meanwhile, here's a picture of me flying through the trees!
-![Forest Flying](./misc/in_the_trees.png)
+Here I have used global_to_local and stored the values in NED format.
 
 #### 3. Set grid start position from local position
 This is another step in adding flexibility to the start location. As long as it works you're good to go!
