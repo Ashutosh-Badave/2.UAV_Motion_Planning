@@ -59,7 +59,8 @@ grid start is updated with current local position with respect to offset.
 Grid goal position is modified to accept longitude, latitude , then it converts into local and adds to offsets to find local goal position.
 
 #### 5. Modify A* to include diagonal motion (or replace A* altogether)
-Minimal requirement here is to modify the code in planning_utils() to update the A* implementation to include diagonal motions on the grid that have a cost of sqrt(2), but more creative solutions are welcome. Explain the code you used to accomplish this step.
+Actions and valid action functions are updated to do the diagonal movements. diagonal movements will be having both values (-1 or 1, not 0).
+They are added with cost of sqrt(2). And to check validity of these actions, both side conditions are applied to them.
 
 #### 6. Cull waypoints 
 For this step you can use a collinearity test or ray tracing method like Bresenham. The idea is simply to prune your path of unnecessary waypoints. Explain the code you used to accomplish this step.
