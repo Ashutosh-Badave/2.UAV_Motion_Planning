@@ -60,7 +60,23 @@ Grid goal position is modified to accept longitude, latitude , then it converts 
 
 #### 5. Modify A* to include diagonal motion (or replace A* altogether)
 Actions and valid action functions are updated to do the diagonal movements. diagonal movements will be having both values (-1 or 1, not 0).
-They are added with cost of sqrt(2). And to check validity of these actions, both side conditions are applied to them.
+They are added with cost of sqrt(2) as shown below.
+
+    NORTH_WEST = (-1,-1,np.sqrt(2))
+    WEST_SOUTH = (1,-1,np.sqrt(2))
+    SOUTH_EAST = (1,1,np.sqrt(2))
+    EAST_NORTH = (-1,1,np.sqrt(2))
+    
+And to check validity of these actions, both side conditions are applied to them.
+
+    if x - 1 < 0 or y - 1 < 0 or grid[x - 1, y - 1] == 1:
+        valid_actions.remove(Action.NORTH_WEST)
+    if x + 1 > n or y - 1 < 0 or grid[x + 1, y - 1] == 1:
+        valid_actions.remove(Action.WEST_SOUTH)
+    if x + 1 > n or y + 1 > m or grid[x + 1, y + 1] == 1:
+        valid_actions.remove(Action.SOUTH_EAST)
+    if x - 1 < 0 or y + 1 > m or grid[x - 1, y + 1] == 1:
+        valid_actions.remove(Action.EAST_NORTH)
 
 #### 6. Cull waypoints 
 For this step you can use a collinearity test or ray tracing method like Bresenham. The idea is simply to prune your path of unnecessary waypoints. Explain the code you used to accomplish this step.
