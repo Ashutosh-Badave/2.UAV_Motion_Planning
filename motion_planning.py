@@ -128,9 +128,10 @@ class MotionPlanning(Drone):
         self.set_home_position(float(data[1].split()[1]),float(data[0].split()[1]),0)
 
         # TODO: retrieve current global position
-        global_current_position = [self._latitude, self._longitude, self._altitude]
+        global_current_position = [self._longitude,self._latitude, self._altitude]
+
         # TODO: convert to current local position using global_to_local()
-        local_position = global_to_local(self.global_position,self.global_home)
+        local_position = global_to_local(global_current_position,self.global_home)
         print('global home {0}, position {1}, local position {2}'.format(self.global_home, self.global_position,
                                                                          self.local_position))
         # Read in obstacle map
@@ -142,13 +143,15 @@ class MotionPlanning(Drone):
         # Define starting point on the grid (this is just grid center)
         grid_start = (-north_offset, -east_offset)
         # TODO: convert start position to current position rather than map center
-        grid_start = (-north_offset + int(local_position[1]), -east_offset +int(local_position[0]))
+        grid_start = (int(local_position[0]) -north_offset, int(local_position[1]) -east_offset)
         # Set goal as some arbitrary position on the grid
         #grid_goal = (-north_offset + 10, -east_offset + 10)
         # TODO: adapt to set goal as latitude / longitude position and convert
-        grid_goal_global = [-122.079465,37.393073, self._altitude]
+        grid_goal_global = [-122.397745, 37.793837, self._altitude]
         grid_goal_local = global_to_local(grid_goal_global,self.global_home)
-        grid_goal = (-north_offset + int(grid_goal_local[0]), -east_offset + int(grid_goal_local[1]))
+        print(grid_goal_local)
+        grid_goal = (int(-north_offset + grid_goal_local[0]), int(-east_offset + grid_goal_local[1]))
+        #grid_goal = (227,435)
         # Run A* to find a path from start to goal
         # TODO: add diagonal motions with a cost of sqrt(2) to your A* implementation
         # or move to a different search space such as a graph (not done here)
@@ -160,7 +163,7 @@ class MotionPlanning(Drone):
         print(len(pruned_path))
         #cells = bresenham(grid_start, grid_goal)
         # Convert path to waypoints
-        waypoints = [[p[0] + north_offset, p[1] + east_offset, TARGET_ALTITUDE, 0] for p in path]
+        waypoints = [[p[0] + north_offset, p[1] + east_offset, TARGET_ALTITUDE, 0] for p in pruned_path]
         # Set self.waypoints
         self.waypoints = waypoints
         # TODO: send waypoints to sim (this is just for visualization of waypoints)
