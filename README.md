@@ -3,9 +3,9 @@
 
 
 
-This project is a continuation of the Backyard Flyer project where you executed a simple square shaped flight path. In this project I have integrated the techniques that I have learned throughout the lessons to plan a path through an urban environment. Check out the [project rubric](https://review.udacity.com/#!/rubrics/1534/view) for more detail on what constitutes are implimented in this project.
+This project is a continuation of the Backyard Flyer project where I executed a simple square shaped flight path. In this project I have integrated the techniques that I have learned throughout the lessons to plan a path through an urban environment. Check out the [project rubric](https://review.udacity.com/#!/rubrics/1534/view) for more detail on what constitutes are implimented in this project.
 
-## To complete this project on your local machine, follow these instructions:
+## To run this project on your local machine, follow these instructions:
 ### Step 1: Download the Simulator
 This is a new simulator environment!  
 
@@ -19,16 +19,16 @@ Set up your Python environment and get all the relevant packages installed using
 git clone https://github.com/Ashutosh-Badave/UAV_Motion_Planning
 ```
 ### Step 4: Test setup
-The first task in this project is to test the [solution code](https://github.com/udacity/FCND-Motion-Planning/blob/master/backyard_flyer_solution.py) for the Backyard Flyer project in this new simulator. Verify that your Backyard Flyer solution code works as expected and your drone can perform the square flight path in the new simulator. To do this, start the simulator and run the [`backyard_flyer_solution.py`](https://github.com/udacity/FCND-Motion-Planning/blob/master/backyard_flyer_solution.py) script.
+First test the [solution code](https://github.com/udacity/FCND-Motion-Planning/blob/master/backyard_flyer_solution.py) for the Backyard Flyer project in this simulator. Verify that Backyard Flyer code works as expected and drone can perform the square flight path in the this simulator. To do this, start the simulator and run the [`backyard_flyer_solution.py`](https://github.com/udacity/FCND-Motion-Planning/blob/master/backyard_flyer_solution.py) script.
 
 ```sh
 source activate fcnd # if you haven't already sourced your Python environment, do so now.
 python backyard_flyer_solution.py
 ```
-The quad should take off, fly a square pattern and land, just as in the previous project. If everything functions as expected then you are ready to start work on this project. 
+The quad should take off, fly a square pattern and land, just as in the previous project. If everything functions as expected then you are ready to fly the drone using motion planning.
 
 ### Step 5: Inspect the relevant files
-For this project, you are provided with two scripts, `motion_planning.py` and `planning_utils.py`. Here you'll also find a file called `colliders.csv`, which contains the 2.5D map of the simulator environment. 
+In this project, two scripts are provided, `motion_planning.py` and `planning_utils.py`. Here you'll also find a file called `colliders.csv`, which contains the 2.5D map of the simulator environment. 
 
 ### Step 6: Test  `motion_planning.py` and `planning_utils.py`
 
@@ -53,9 +53,9 @@ Planning algorithm looks like the following:
 - Return waypoints in local ECEF coordinates (format for `self.all_waypoints` is [N, E, altitude, heading], where the drone’s start location corresponds to [0, 0, 0, 0]). 
 
 ### Step 8: Check out the writup!
-Complete detailed writeup of project solution and how I addressed each above step is mentioned in [`writeup_template.md`](./writeup_template.md).
+Detailed writeup of this project and how I addressed each step of motion planning is mentioned in [`writeup_template.md`](./writeup_template.md).
 
-## Extra Challenges
+## Challenges
 If you feel inspired to take this project above and beyond, then here are some suggestions for interesting things to try.
 
 ### Try flying more complex trajectories
@@ -77,7 +77,4 @@ wp2[3] = np.arctan2((wp2[1]-wp1[1]), (wp2[0]-wp1[0]))
 
 This may not be completely intuitive, but this will yield a yaw angle that is positive counterclockwise about a z-axis (down) axis that points downward.
 
-Put all of these together and make up your own crazy paths to fly! Can you fly a double helix?? 
-![Double Helix](./misc/double_helix.gif)
-
-Ok flying a double helix might seem like a silly idea, but imagine you are an autonomous first responder vehicle. You need to first fly to a particular building or location, then fly a reconnaissance pattern to survey the scene! Give it a try!
+Put all of these together and make up your own crazy paths to fly! Happy flying...!!!
