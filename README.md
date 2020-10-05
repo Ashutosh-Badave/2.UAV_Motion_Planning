@@ -3,7 +3,7 @@
 
 
 
-This project is a continuation of the Backyard Flyer project where I executed a simple square shaped flight path. In this project I have integrated the techniques that I have learned throughout the lessons to plan a path through an urban environment. Check out the [project rubric](https://review.udacity.com/#!/rubrics/1534/view) for more detail on what constitutes are implimented in this project.
+This project is a continuation of the Backyard Flyer project where I executed a simple square shaped flight path. In this project I have integrated the techniques that I have learned throughout the lessons (A* search and colliear test) to plan a path through an urban environment. Check out the  [`writeup_template.md`](./writeup_template.md) for more detail on how I implemented steps of motion planning.
 
 ## To run this project on your local machine, follow these instructions:
 ### Step 1: Download the Simulator
@@ -19,19 +19,15 @@ Set up your Python environment and get all the relevant packages installed using
 git clone https://github.com/Ashutosh-Badave/UAV_Motion_Planning
 ```
 ### Step 4: Test setup
-First test the [solution code](https://github.com/udacity/FCND-Motion-Planning/blob/master/backyard_flyer_solution.py) for the Backyard Flyer project in this simulator. Verify that Backyard Flyer code works as expected and drone can perform the square flight path in the this simulator. To do this, start the simulator and run the [`backyard_flyer_solution.py`](https://github.com/udacity/FCND-Motion-Planning/blob/master/backyard_flyer_solution.py) script.
 
-```sh
-source activate fcnd # if you haven't already sourced your Python environment, do so now.
-python backyard_flyer_solution.py
-```
+
+
 The quad should take off, fly a square pattern and land, just as in the previous project. If everything functions as expected then you are ready to fly the drone using motion planning.
 
 ### Step 5: Inspect the relevant files
 In this project, two scripts are provided, `motion_planning.py` and `planning_utils.py`. Here you'll also find a file called `colliders.csv`, which contains the 2.5D map of the simulator environment. 
 
-### Step 6: Test  `motion_planning.py` and `planning_utils.py`
-
+### Step 6: Test setup 
 `motion_planning.py` is basically a modified version of `backyard_flyer.py` that leverages some extra functions in `planning_utils.py`. It should work right out of the box.  Try running `motion_planning.py` to see what it does. To do this, first start up the simulator, then at the command line:
  
 ```sh
@@ -52,8 +48,6 @@ Planning algorithm looks like the following:
 - Uses a collinearity test to remove unnecessary waypoints. Also ray tracing method (like Bresenham) is implemented, just change pronning path method.
 - Return waypoints in local ECEF coordinates (format for `self.all_waypoints` is [N, E, altitude, heading], where the drone’s start location corresponds to [0, 0, 0, 0]). 
 
-### Step 8: Check out the writup!
-Detailed writeup of this project and how I addressed each step of motion planning is mentioned in [`writeup_template.md`](./writeup_template.md).
 
 ## Challenges
 If you feel inspired to take this project above and beyond, then here are some suggestions for interesting things to try.
